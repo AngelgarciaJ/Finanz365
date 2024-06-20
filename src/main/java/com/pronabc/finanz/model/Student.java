@@ -1,2 +1,4 @@
-package com.pronabc.finanz.model;public class Student {
+package com.pronabc.finanz.model;
+
+public class Student {
 }

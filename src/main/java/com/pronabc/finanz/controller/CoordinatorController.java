@@ -1,2 +1,4 @@
-package com.pronabc.finanz.controller;public class CoordinatorController {
+package com.pronabc.finanz.controller;
+
+public class CoordinatorController {
 }

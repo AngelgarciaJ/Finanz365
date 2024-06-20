@@ -1,2 +1,5 @@
-package com.pronabc.finanz.controller;public class StudentController {
+package com.pronabc.finanz.controller;
+
+public class StudentController {
+
 }
