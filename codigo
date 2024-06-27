@@ -1,0 +1,24 @@
+[33mcommit 38a5f5c5bd74e8247f55bf0b5a465b8f9079848e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: d904c79 5f903f1
+Author: angelgarcia <angelrgarciajimenez@gmail.com>
+Date:   Thu Jun 20 08:45:49 2024 -0500
+
+    Merge branch 'main' of https://github.com/AngelgarciaJ/Finanz365
+
+[33mcommit d904c796d38339b0431f9e7bdc54381a3eee3515[m
+Author: angelgarcia <angelrgarciajimenez@gmail.com>
+Date:   Thu Jun 20 08:41:19 2024 -0500
+
+    codigo de entidades, repository, para login- Er
+
+[33mcommit 59c1f93b9680644b3e1a639025ca529bb9f830d9[m
+Author: angelgarcia <angelrgarciajimenez@gmail.com>
+Date:   Thu Jun 20 08:37:11 2024 -0500
+
+    creando funcinalidad de login-Errores en controladores
+
+[33mcommit 5f903f1357b0872f0ed7a39d5d19f1d25155cee6[m
+Author: Angel Raul Garcia Jimenez <93614402+AngelgarciaJ@users.noreply.github.com>
+Date:   Wed Jun 19 19:51:25 2024 -0500
+
+    Initial commit

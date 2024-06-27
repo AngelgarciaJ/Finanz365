@@ -1,41 +1,42 @@
 package com.pronabc.finanz.controller;
 
-import com.pronabc.finanz.model.User;
-import com.pronabc.finanz.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AuthController {
 
-    @Autowired
-    private UserService userService;
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password) {
+        // Lógica para autenticar al usuario aquí
+        // Por ahora, vamos a redirigir a diferentes páginas según el tipo de usuario
 
-    @PostMapping("/api/login")
-    @ResponseBody
-    public ResponseEntity<?> login(@RequestBody User loginRequest) {
-        User user = userService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        // Ejemplo básico de redirección basado en roles (estudiante, coordinador, admin)
+        if (userIsStudent(email, password)) {
+            return "redirect:/student/studentDashboard";
+        } else if (userIsCoordinator(email, password)) {
+            return "redirect:/coordinator/dashboard";
+        } else if (userIsAdmin(email, password)) {
+            return "redirect:/admin/dashboard";
         } else {
-            return ResponseEntity.status(401).body("Invalid credentials");
+            // Enviar de vuelta al login si la autenticación falla
+            return "redirect:/login?error";
         }
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(@RequestParam String role) {
-        switch (role.toLowerCase()) {
-            case "student":
-                return "student/dashboard";
-            case "coordinator":
-                return "coordinator/dashboard";
-            case "admin":
-                return "admin/dashboard";
-            default:
-                return "redirect:/";
-        }
+    // Métodos de ejemplo para validar usuarios (simulación)
+    private boolean userIsStudent(String email, String password) {
+        // Implementación de la lógica de autenticación para estudiantes
+        return true; // Placeholder
+    }
+
+    private boolean userIsCoordinator(String email, String password) {
+        // Implementación de la lógica de autenticación para coordinadores
+        return false; // Placeholder
+    }
+
+    private boolean userIsAdmin(String email, String password) {
+        // Implementación de la lógica de autenticación para administradores
+        return false; // Placeholder
     }
 }
-

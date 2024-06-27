@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos Mensuales - Finanz365</title>
+    <link rel="stylesheet" href="/static/student/PanelEstudiante.css.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Finanz365 Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/student/dashboard">Inicio</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#" id="logout">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="dashboard">
+        <h1>Gráficos por Mes</h1>
+        <div id="graphs-container">
+            <!-- Aquí se renderizarán los gráficos -->
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </div>
+    <p>&copy; 2024 Finanz365</p>
+</footer>
+
+<script src="/static/student/scripts.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        loadGraphs();
+    });
+
+    function loadGraphs() {
+        fetch("/api/transactions/graphs")
+            .then(response => response.json())
+            .then(data => {
+                // Aquí puedes usar una librería como Chart.js para renderizar los gráficos
+                // Ejemplo de uso de Chart.js:
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Ingresos y Egresos',
+                            data: data.values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error("Error cargando los gráficos:", error));
+    }
+</script>
+</body>
+</html>

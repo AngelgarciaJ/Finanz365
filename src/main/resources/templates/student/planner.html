@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Presupuesto - Finanz365</title>
+    <link rel="stylesheet" href="/static/student/PanelEstudiante.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Finanz365 Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/student/dashboard">Inicio</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#" id="logout">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="dashboard">
+        <h1>Planificador de Presupuesto</h1>
+        <form id="budgetForm">
+            <label for="month">Mes:</label>
+            <input type="number" id="month" name="month" required>
+
+            <label for="year">Año:</label>
+            <input type="number" id="year" name="year" required>
+
+            <label for="budget">Presupuesto:</label>
+            <input type="number" id="budget" name="budget" required>
+
+            <div class="form-buttons">
+                <button type="submit">Guardar</button>
+                <button type="button" onclick="navigateToDashboard()">Cancelar</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+    </div>
+    <p>&copy; 2024 Finanz365</p>
+</footer>
+
+<script src="/static/student/scripts.js"></script>
+<script>
+    document.getElementById("budgetForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        saveBudget();
+    });
+
+    function saveBudget() {
+        const budgetData = {
+            month: parseInt(document.getElementById("month").value),
+            year: parseInt(document.getElementById("year").value),
+            budget: parseFloat(document.getElementById("budget").value)
+        };
+
+        fetch("/api/budgets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(budgetData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Presupuesto guardado con éxito.");
+                    navigateToDashboard();
+                } else {
+                    alert("Error guardando el presupuesto.");
+                }
+            })
+            .catch(error => console.error("Error guardando el presupuesto:", error));
+    }
+
+    function navigateToDashboard() {
+        window.location.href = "/student/dashboard";
+    }
+</script>
+</body>
+</html>
