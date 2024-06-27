@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 package com.pronabc.finanz.api;
 
 import com.pronabc.finanz.model.Student;
@@ -13,7 +20,7 @@ public class ApiClient {
     }
 
     public Student getEstudianteById(Long id) {
-        String url = "http://localhost:8080/api/estudiantes/" + id;
+        String url = "http://localhost:8080/estudiantes/" + id;
         return restTemplate.getForObject(url, Student.class);
     }
 }
